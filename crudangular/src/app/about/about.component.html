@@ -1,0 +1,25 @@
+<h1>User Management</h1>
+<ul>
+  <!-- this is similar to map function in react js -->
+  <li *ngFor="let user of users">
+    {{ user.name }} ({{ user.email }}) ({{ user.age }})
+    <button (click)="editUser(user)">Update</button>
+    <button (click)="deleteUser(user.id)">Delete</button>
+  </li>
+</ul>
+
+<!-- here [(ngModel)]="newUser.name" is similar to value={newUser.name} and onChange(()=> setUser(e.target.value)) in react js  -->
+<label for="name">Name:</label>
+<input [(ngModel)]="newUser.name" placeholder="Name" />
+
+<label for="email">Email:</label>
+<input [(ngModel)]="newUser.email" placeholder="Email" />
+
+<label for="age">Age:</label>
+<input [(ngModel)]="newUser.age" placeholder="Age" />
+
+<!-- these are like ternary operator in react js is isEditing is true then Save Changes else Create User -->
+<button *ngIf="!isEditing" (click)="createUser()">Create User</button>
+<button *ngIf="isEditing" (click)="updateUser()">Save Changes</button>
+
+<app-about-section />

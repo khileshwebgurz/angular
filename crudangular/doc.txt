@@ -1,0 +1,63 @@
+/////////////////////////////////////////////// about.component.ts ///////////////////////////////////////////////////////  
+  
+  This is the constructor function of an Angular component, where Angular injects dependencies (services) using dependency injection.
+  
+  // here this down part is similar to useEffect in react where , 
+
+  // useEffect(() => {
+  //   document.title = 'About Page'; // Same as Angular's titleService
+  // }, []);
+
+  // and this UserService is similar to the component where we fetched our api and just accessing here
+  //   import { getUser } from '../services/userService';
+  // useEffect(() => {
+  //   getUser().then(user => setUser(user));
+  // }, []);
+  
+  constructor(private userService: UserService, private titleService: Title) {
+    this.titleService.setTitle('About Page');
+  }
+
+  constructor(...)
+This is the component's constructor. It runs once when the component is created (similar to useEffect(() => {}, []) in React).
+
+  private userService: UserService
+Injects a custom service called UserService.
+Used to handle things like fetching, updating, and deleting users.
+You’ll use this.userService in the component methods (like createUser, updateUser).
+
+users: any[] = [] -> declare the list of store users. similar to -> const [users, setUsers] = useState([]);
+ngOnInit() {
+  this.loadUsers();
+} => Lifecycle hook that runs when the component is initialized. Same as React’s useEffect(() => { ... }, []).
+
+
+// loading user from backend
+loadUsers() {
+    this.userService.getUsers().subscribe({
+      next: (data) => {
+        this.users = data;
+      },
+      error: (error) => {
+        console.error('Error loading users:', error);
+      },
+    });
+}
+// Above loadUsers() function explanation
+-> this.userService.getUsers() => Calls a method from UserService that returns an Observable (similar to a Promise in JavaScript). Think of it like calling a fetch() 
+or axios.get() in React.
+-> .subscribe({...}) => Subscribes to the Observable (like .then() and .catch() in Promises).next: handles the success response. error: handles any error if API fails.
+-> this.users = data => Saves the fetched user data into the users array. In React, you’d do something like setUsers(data).
+
+this is react equivalent code .
+useEffect(() => {
+  axios.get('/api/users')
+    .then(response => {
+      setUsers(response.data);
+    })
+    .catch(error => {
+      console.error('Error loading users:', error);
+    });
+}, []);
+
+
