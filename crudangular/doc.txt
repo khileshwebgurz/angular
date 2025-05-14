@@ -1,3 +1,10 @@
+//       About RxJS 
+RxJS (Reactive Extensions for JavaScript) is a library for reactive programming using Observables.
+It allows Angular to handle asynchronous operations (like HTTP requests, user input events, WebSocket connections, etc.) 
+in a clean, scalable, and functional way.
+
+
+
 /////////////////////////////////////////////// about.component.ts ///////////////////////////////////////////////////////  
   
   This is the constructor function of an Angular component, where Angular injects dependencies (services) using dependency injection.
@@ -61,3 +68,40 @@ useEffect(() => {
 }, []);
 
 
+//////////////////////////////////// For Post Request creating user ////////////////////////
+
+This is a service for hitting api, This is like a helper function or API utility in React:
+CreateUser(user: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, user);
+  }
+
+Explanation:
+this.http.post is Angular’s way of making an HTTP POST request (like axios.post or fetch(..., { method: 'POST' }))
+It returns an Observable (from RxJS) instead of a Promise
+This function sends user data to this.apiUrl to create a new user
+
+Similar like this in react js:
+
+  export const createUser = async (user) => {
+  const response = await axios.post('/api/users', user);
+  return response.data;
+};
+
+
+createUser() {
+    this.userService.createUser(this.newUser).subscribe({
+      next: (newUser) => {
+        this.users.push(newUser);
+        this.newUser = { name: '', email: '', age: '' };
+      },
+      error: (error) => {
+        console.error('Error creating user:', error);
+      },
+    });
+  }
+
+for data sending -> this.userService.createUser(this.newUser)
+for async handling like try/catch with await in react -> .subscribe({ next, error })
+
+
+Angular uses Observables, so you use .subscribe() instead of .then()

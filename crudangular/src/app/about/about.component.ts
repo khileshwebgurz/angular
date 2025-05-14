@@ -60,21 +60,26 @@ export class AboutComponent implements OnInit {
     });
   }
 
+  // when just update button is clicked 
   editUser(user: any) {
-    this.newUser = { ...user }; 
+    this.newUser = { ...user }; //Pre-fill form with selected user's data
     this.isEditing = true;
-    this.editingUserId = user.id;
+    this.editingUserId = user.id; //set editingUserId to the user's id that needs to be edited.
   }
 
   updateUser() {
     if (!this.editingUserId) return;
 
     this.userService.updateUser(this.editingUserId, this.newUser).subscribe({
+      // this updatedUser is like a response we get from the backend when success.
       next: (updatedUser) => {
+        // you just want the UI (the list displayed on the page) to reflect that update without reloading the page.
         const index = this.users.findIndex((u) => u.id === this.editingUserId);
+        // if there is some user then update its data with updatedUser
         if (index > -1) {
           this.users[index] = updatedUser;
         }
+        // if done all clear the fields and make other false and null.
         this.newUser = { name: '', email: '', age: '' };
         this.isEditing = false;
         this.editingUserId = null;
