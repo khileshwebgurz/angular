@@ -20,6 +20,8 @@
 
 <!-- these are like ternary operator in react js is isEditing is true then Save Changes else Create User -->
 <button *ngIf="!isEditing" (click)="createUser()">Create User</button>
+
+<!-- this statement tells us that if isEditing is true then Save Changes btn should be visible if false then Create User  -->
 <button *ngIf="isEditing" (click)="updateUser()">Save Changes</button>
 
 <app-about-section />

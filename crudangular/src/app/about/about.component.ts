@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms'; // 👈 Also for ngModel
 
 // this is my  about component which import some modules bcz it is a standalone component which doesn't depends of angular modules. So that why for each thing
 // we manually import from angualr like CommonModule, FormsModule. And we also importing component which is about-section
+// defining a component using @Component decorator
 @Component({
   selector: 'app-about',
   imports: [AboutSectionComponent, CommonModule, FormsModule],
@@ -18,6 +19,7 @@ import { FormsModule } from '@angular/forms'; // 👈 Also for ngModel
 export class AboutComponent implements OnInit {
   
 
+  // THis UserService is from service folder .DI injects services into components via constructors.
   constructor(private userService: UserService, private titleService: Title) {
     this.titleService.setTitle('About Page');
   }

@@ -1,4 +1,9 @@
+ * To learn State management
+
 //       About RxJS 
+
+
+
 RxJS (Reactive Extensions for JavaScript) is a library for reactive programming using Observables.
 It allows Angular to handle asynchronous operations (like HTTP requests, user input events, WebSocket connections, etc.) 
 in a clean, scalable, and functional way.
@@ -104,4 +109,99 @@ for data sending -> this.userService.createUser(this.newUser)
 for async handling like try/catch with await in react -> .subscribe({ next, error })
 
 
-Angular uses Observables, so you use .subscribe() instead of .then()
+Angular uses Observables, so you use .subscribe() instead of .then().
+
+Components are the building blocks of an Angular application,They encapsulate logic, template (UI), and styles.
+Templates are HTML files (or inline strings) defining a component’s UI.
+Interpolation-> Interpolation ({{ expression }}) displays component properties or expressions in the template, similar to React’s {expression} in JSX.
+Example -> inside about.component.html =>  {{ user.name }}
+
+This is one way binding , in simple terms passing data from .ts file to .html file just like passing props in react js
+
+Property binding-> Property binding is a one-way data binding technique in Angular that allows you to bind data from the component class (TypeScript) 
+to the DOM element’s property (HTML).
+Example -> Inside app.component.ts -> export class AppComponent {
+  imageUrl = 'https://via.placeholder.com/150';
+  buttonLabel = 'Click Me!';
+}
+
+Inside app.component.html =>  This is property binding in img src => <img [src]="imageUrl" alt="Placeholder Image" />
+This is Property binding on button label  => <button [innerText]="buttonLabel"></button>
+
+
+There is 2 way binding also , which is done using (ngModel) in .html file and to use this we need to import FormsModule in .ts file.
+Example-> inside .ts file -> export class AppComponent {
+  name: string = '';
+}
+
+then inside .html file -> <input [(ngModel)]="name" placeholder="Enter your name" />
+Now when you type into the input field, the name variable in the .ts file is updated immediately — and vice versa.
+
+Event Binding => Only listens to user actions (like click, input, change, submit, etc.)
+It doesn't sync values — it just calls a method when an event happens.
+
+Inside .html file -> <button (click)="sayHello()">Click me</button>
+Inside .ts file -> sayHello(){ console.log('btn clicked ')}
+
+
+Directives -> Directives are special instructions in the HTML that tell Angular to do something — like manipulate the DOM, apply logic, or enhance elements.
+There are 3 types of Directives
+a) Component Directives-> Every component you build (like AppComponent) is a component directive.
+The ts file is -> @Component({
+  selector: 'app-hello',
+  template: `<h1>Hello</h1>`,
+})
+export class HelloComponent {}
+
+We can use it as -> <app-hello></app-hello>
+
+b) Structural Directives -> Structural directives are used to change the structure of the DOM — meaning they can add, remove, or modify elements in your HTML 
+based on some condition or loop. They usually start with a * (asterisk) in your templates.
+They don’t just hide the elements with CSS — they actually add or remove elements from the DOM. So if an element is not shown using *ngIf, it is not even 
+in memory or in the browser.
+
+Example -> *ngIf , *ngFor, *ngSwitch 
+1)  <li *ngFor="let user of users"> -> if users is an array of 3 then it will create 3 li
+2) *ngIf="!isEditing" -> if not Editing then 
+3) ngClass => <p [ngClass]="{'highlight': isImportant}">Text</p> , this dynamically apply class
+4) ngStyle => <p [ngStyle]="{color: isRed ? 'red' : 'black'}">Styled text</p> , this dynamically apply style
+
+
+* Services & Dependency Injection
+What: Services are singleton classes for shared logic (e.g., API calls, utilities), similar to React’s context or utilities outside components. 
+Dependency Injection (DI) is Angular’s mechanism to provide services to components.
+
+Key Points:
+
+Services are decorated with @Injectable.
+DI injects services into components via constructors.
+Angular’s DI is more structured than React’s ad-hoc context or hooks.
+ng generate service services/user -> using this we create a service named as user inside services folder.
+
+
+* Routing -> <a routerLink="/">Home</a> . This is the way to implementing routing.
+
+* Form Handling using ReactiveFormModule
+
+Inside formcreation.component.html -> 
+a) [formGroup]="userForm" => This binds your form in the template to the FormGroup instance named userForm in your component class.
+You're binding your Angular form model (FormGroup) to the template and telling Angular what function to run on submission.
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">  
+    <label>
+      Name:
+      <input type="text" formControlName="name" />
+    </label>
+
+    We are applying some if condtion to hide/show this div -> userForm.get('name')?.invalid:
+    Checks if the name input is invalid (e.g. empty or doesn't meet validation rules).
+    userForm.get('name')?.touched:
+    Checks if the user has interacted with the name input (e.g. focused and blurred).
+
+    <div *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched">
+      Name is required and should be minimum 3 characters.
+    </div> </form>
+
+
+Code of File user.service.ts -> @Injectable() → A decorator that marks the class as available for dependency injection.
+providedIn: 'root' → Tells Angular to register the service in the application’s root injector (i.e., global scope).
+

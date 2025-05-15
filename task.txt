@@ -1,0 +1,264 @@
+Components, Templates, Interpolation
+Property binding, Event binding, ngModel
+Directives – ngIf, ngFor, ngClass
+Services & Dependency Injection
+Routing
+Reactive Forms
+HTTPClient
+State Management 
+
+Practice Project
+Blog App / TODO / CRUD with mock APIs
+
+
+react -> 
+React Hook Form + Yup
+NextAuth.js
+
+✅ React Query or SWR
+Server state management; better than useEffect+fetch
+✅ Debounce, Throttle, Search with API
+For performance in search/filter UI
+✅ Dynamic Imports, Lazy Loading
+Performance optimization
+✅ Server Actions in Next 14
+SSR ke sath safe data manipulation
+✅ Pagination, Filtering, Sorting (server-side)
+Real-world blog/product listing ke liye
+✅ Redis / Caching
+Speed and SEO optimization in full-stack apps
+✅ WebSockets / Socket.IO
+Live features (chat/notification) ke liye
+
+You, 9:11 AM
+ 1. Basic Setup
+
+Express App, dotenv, nodemon, cors, helmet, morgan
+
+
+Folder Structure: routes/, controllers/, models/, middleware/
+
+
+
+✅ 2. CRUD Operations
+
+RESTful APIs: GET, POST, PUT, DELETE
+
+
+Use Mongoose for MongoDB models (schemas + validations)
+
+
+
+✅ 3. Authentication & Authorization
+
+✅ JWT Auth (Login, Register, Middleware to protect routes)
+
+
+✅ Password Hashing with bcryptjs
+
+
+✅ Role-based access (admin/user) for protected routes
+
+
+
+✅ 4. Advanced Features
+
+✅ File Upload (e.g., Multer for image uploads)
+
+
+✅ Pagination, Search, Filtering with MongoDB
+
+
+✅ Email sending (using nodemailer)
+
+
+✅ Rate limiting, IP blocking (express-rate-limit)
+
+
+✅ Redis for caching GET requests (optional but good for performance)
+
+
+
+✅ 5. Middlewares
+
+Error Handling Middleware
+
+
+Auth Middleware (JWT verification)
+
+
+Logging Middleware
+
+
+
+✅ 6. Security
+
+✅ Sanitize input (express-mongo-sanitize)
+
+
+✅ Prevent XSS attacks (xss-clean)
+
+
+✅ Enable Helmet for securing headers
+
+
+✅ Enable CORS properly for frontend integration
+
+
+
+✅ 7. Deployment Ready
+
+✅ Environment-based config (process.env)
+
+
+✅ Connect to MongoDB Atlas (remote DB)
+
+
+✅ Proper .env management and config.js structure
+
+
+✅ Use PM2 or similar for server process management
+
+
+✅ Use Render, Railway, or VPS for backend hosting
+
+You, 9:13 AM
+1. CSR vs SSR vs SSG vs ISR
+
+
+useEffect se data fetch (CSR)
+
+
+getServerSideProps (SSR)
+
+
+getStaticProps + getStaticPaths (SSG)
+
+
+ISR (Incremental Static Regeneration)
+
+
+
+
+🔹 2. Routing in Next.js
+
+
+App Router (Next.js 13/14 ka naya system)
+
+
+app/ directory structure
+
+
+page.jsx, layout.jsx, loading.jsx, error.jsx
+
+
+
+
+🔹 3. Dynamic Routing
+
+
+[slug], [id], [...slug] ka use
+
+
+generateStaticParams (SSG me dynamic pages ke liye)
+
+
+
+
+🔹 4. API Routes
+
+
+app/api/route.js (Next.js 13+)
+
+
+POST request handle karna
+
+
+Database (MongoDB) se connect karna
+
+
+
+
+🔹 5. Authentication
+
+
+next-auth se Google/Login system
+
+
+Session handling (SessionProvider, useSession())
+
+
+Middleware se protected routes
+
+
+
+
+🔹 6. Forms & Validations
+
+
+react-hook-form + yup
+
+
+Controlled vs uncontrolled inputs
+
+
+File/image upload with preview
+
+
+
+
+🔹 7. State Management
+
+
+useState, useEffect, useContext
+
+
+Redux Toolkit (agar use kiya ho toh)
+
+
+Local storage/session storage me data store
+
+
+
+
+🔹 8. Optimizations
+
+
+Lazy loading (next/image, dynamic imports)
+
+
+Image optimization using <Image />
+
+
+SEO optimizations (metadata, canonical URLs, etc.)
+
+
+
+
+🔹 9. Deployment
+
+
+Vercel me deploy kaise karte ho
+
+
+.env config, CORS issues
+
+
+Server actions (Next.js 14+)
+
+
+
+
+🔹 10. Bonus Concepts
+
+
+TailwindCSS ya shadcn/ui
+
+
+Server-side caching (like Redis)
+
+
+Pagination (Server side vs Client side)
+
+
+Skeleton loader while fetching data
